@@ -6,6 +6,7 @@ public class Libro {
     private int id;
     private String titulo;
     private String autor;
+    private boolean prestado; // Nuevo atributo
 
     // Constructor para inicializar un libro con ID, título y autor
     public Libro(int id, String titulo, String autor) {
@@ -37,5 +38,12 @@ public class Libro {
 
     public void setAutor(String autor) {
         this.autor = autor;
+    }
+    //Añadimos prestado
+    public boolean isPrestado() {
+        return prestado;
+    }
+    public void setPrestado(boolean prestado) {
+        this.prestado = prestado;
     }
 }

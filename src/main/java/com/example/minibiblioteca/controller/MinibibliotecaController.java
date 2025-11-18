@@ -11,7 +11,7 @@ public class MinibibliotecaController {
 
     //Lista dinámica de libros
     private List<Libro> libros = new ArrayList<>();
-    
+
     //Contador para asignar IDs únicos a los libros
     private int nextId = 1;
 
@@ -49,4 +49,21 @@ public class MinibibliotecaController {
         //Redirigimos a la página principal para ver la lista actualizada
         return "redirect:/";
     }
+
+     // NUEVO: Ruta para cambiar el estado prestado/no prestado de un libro por ID
+    @GetMapping("/toggle/{id}")
+    public String togglePrestado(@PathVariable int id) {
+        //Buscamos el libro con el ID indicado
+        for (Libro l : libros) {
+            if (l.getId() == id) {
+                //Cambiamos su estado prestado
+                l.setPrestado(!l.isPrestado());
+                break; //Salimos del bucle al encontrarlo
+            }
+        }
+
+        //Redirigimos a la página principal para ver la lista actualizada
+        return "redirect:/";
+    }
 }
+

@@ -5,33 +5,38 @@
     <title>Mi Mini Biblioteca</title>
 </head>
 <body>
+    <h1>Mi Mini Biblioteca</h1>
 
-<h1>Mi Mini Biblioteca</h1>
+    <!-- Enlaces para añadir libros predefinidos -->
+    <a th:href="@{/add(titulo='El Quijote', autor='Miguel de Cervantes')}">Añadir "El Quijote"</a><br/>
+    <a th:href="@{/add(titulo='Cien Años de Soledad', autor='Gabriel García Márquez')}">Añadir "Cien Años de Soledad"</a><br/>
+    <a th:href="@{/add(titulo='1984', autor='George Orwell')}">Añadir "1984"</a><br/>
 
-<!--Enlaces para añadir libros predefinidos -->
-<!--Cada enlace llama a la ruta /add con parámetros de título y autor -->
-<a th:href="@{/add(titulo='El Quijote', autor='Miguel de Cervantes')}">
-    Añadir "El Quijote" de Miguel de Cervantes
-</a><br/>
-<a th:href="@{/add(titulo='1984', autor='George Orwell')}">
-    Añadir "1984" de George Orwell
-</a><br/>
-<a th:href="@{/add(titulo='Cien años de soledad', autor='Gabriel García Márquez')}">
-    Añadir "Cien años de soledad" de Gabriel García Márquez
-</a><br/>
-
-<!--Lista de libros -->
-<ul>
-    <!-- th:each itera sobre la lista de libros que viene desde el modelo -->
-    <!-- "libro" es cada elemento de la lista -->
-    <li th:each="libro : ${libros}">
-        <!-- Mostramos el título y el autor -->
-        <span th:text="${libro.titulo}"></span> - 
-        <span th:text="${libro.autor}"></span>
-        <!--Enlace para eliminar este libro usando su ID -->
-        <a th:href="@{/delete/{id}(id=${libro.id})}">Eliminar</a>
-    </li>
-</ul>
-
+    <!-- Tabla de libros -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Prestado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Recorremos la lista de libros -->
+            <tr th:each="libro : ${libros}">
+                <td th:text="${libro.id}"></td>
+                <td th:text="${libro.titulo}"></td>
+                <td th:text="${libro.autor}"></td>
+                <td th:text="${libro.prestado ? 'Sí' : 'No'}"></td>
+                <td>
+                    <!-- Enlaces para cambiar estado y eliminar -->
+                    <a th:href="@{/toggle/{id}(id=${libro.id})}">Cambiar estado</a> |
+                    <a th:href="@{/delete/{id}(id=${libro.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
