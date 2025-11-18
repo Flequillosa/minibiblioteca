@@ -1,4 +1,5 @@
 package com.example.minibiblioteca.controller;
+import com.example.minibiblioteca.model.Libro; // Importamos nuestro modelo Libro
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -8,27 +9,44 @@ import java.util.List;
 @Controller
 public class MinibibliotecaController {
 
-    //Lista dinámica de libros (como strings "Título - Autor")
-    private List<String> libros = new ArrayList<>();
+    //Lista dinámica de libros
+    private List<Libro> libros = new ArrayList<>();
+    
+    //Contador para asignar IDs únicos a los libros
+    private int nextId = 1;
 
+    //Ruta principal: muestra la lista de libros
     @GetMapping("/")
     public String verLibros(Model model) {
+        //Añadimos la lista de libros al modelo para enviarla a la vista
         model.addAttribute("libros", libros);
+        return "listView"; //Retorna la vista HTML que renderiza la lista
+    }
+
+    //Ruta para añadir libros predefinidos con parámetros ?titulo=...&autor=...
+    @GetMapping("/add")
+    public String addLibro(@RequestParam String titulo,
+                           @RequestParam String autor,
+                           Model model) {
+
+        //Creamos un nuevo libro con ID único y lo añadimos a la lista
+        libros.add(new Libro(nextId++, titulo, autor));
+
+        //Actualizamos el modelo para la vista
+        model.addAttribute("libros", libros);
+
+        //Retornamos la misma vista para que se muestre la lista actualizada
         return "listView";
     }
 
-    @GetMapping("/add")
-    public String addLibro(@RequestParam String titulo, 
-                           @RequestParam String autor, 
-                           Model model) {
-        //Creamos el string del libro y lo añadimos a la lista
-        String libro = titulo + " - " + autor;
-        libros.add(libro);
+    //Ruta para eliminar un libro por ID
+    @GetMapping("/delete/{id}")
+    public String deleteLibro(@PathVariable int id) {
 
-        //Enviamos lista actualizada a la vista
-        model.addAttribute("libros", libros);
+        //Eliminamos el libro cuyo ID coincida con el recibido
+        libros.removeIf(l -> l.getId() == id);
 
-        //Devolvemos directamente la vista
-        return "listView";
+        //Redirigimos a la página principal para ver la lista actualizada
+        return "redirect:/";
     }
 }

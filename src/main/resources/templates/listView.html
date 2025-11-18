@@ -2,18 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Mini Biblioteca</title>
+    <title>Mi Mini Biblioteca</title>
 </head>
 <body>
-    <h1>Mis libros</h1>
 
-    <!-- Enlaces para añadir libros predefinidos -->
-    <a th:href="@{/add(titulo='El Quijote', autor='Cervantes')}">Añadir "El Quijote"</a><br/>
-    <a th:href="@{/add(titulo='1984', autor='George Orwell')}">Añadir "1984"</a><br/>
-    <a th:href="@{/add(titulo='Cien años de soledad', autor='Gabriel García Márquez')}">Añadir "Cien años de soledad"</a><br/>
+<h1>Mi Mini Biblioteca</h1>
 
-    <ul>
-        <li th:each="libro : ${libros}" th:text="${libro}"></li>
-    </ul>
+<!--Enlaces para añadir libros predefinidos -->
+<!--Cada enlace llama a la ruta /add con parámetros de título y autor -->
+<a th:href="@{/add(titulo='El Quijote', autor='Miguel de Cervantes')}">
+    Añadir "El Quijote" de Miguel de Cervantes
+</a><br/>
+<a th:href="@{/add(titulo='1984', autor='George Orwell')}">
+    Añadir "1984" de George Orwell
+</a><br/>
+<a th:href="@{/add(titulo='Cien años de soledad', autor='Gabriel García Márquez')}">
+    Añadir "Cien años de soledad" de Gabriel García Márquez
+</a><br/>
+
+<!--Lista de libros -->
+<ul>
+    <!-- th:each itera sobre la lista de libros que viene desde el modelo -->
+    <!-- "libro" es cada elemento de la lista -->
+    <li th:each="libro : ${libros}">
+        <!-- Mostramos el título y el autor -->
+        <span th:text="${libro.titulo}"></span> - 
+        <span th:text="${libro.autor}"></span>
+        <!--Enlace para eliminar este libro usando su ID -->
+        <a th:href="@{/delete/{id}(id=${libro.id})}">Eliminar</a>
+    </li>
+</ul>
+
 </body>
 </html>
