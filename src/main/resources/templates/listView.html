@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Biblioteca</title>
+</head>
+<body>
+    <h1>Mis libros</h1>
+    <ul>
+        <li th:each="libro : ${libros}" th:text="${libro}"></li>
+    </ul>
+</body>
+</html>
