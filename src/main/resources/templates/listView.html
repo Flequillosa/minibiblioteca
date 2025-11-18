@@ -6,6 +6,12 @@
 </head>
 <body>
     <h1>Mis libros</h1>
+
+    <!-- Enlaces para añadir libros predefinidos -->
+    <a th:href="@{/add(titulo='El Quijote', autor='Cervantes')}">Añadir "El Quijote"</a><br/>
+    <a th:href="@{/add(titulo='1984', autor='George Orwell')}">Añadir "1984"</a><br/>
+    <a th:href="@{/add(titulo='Cien años de soledad', autor='Gabriel García Márquez')}">Añadir "Cien años de soledad"</a><br/>
+
     <ul>
         <li th:each="libro : ${libros}" th:text="${libro}"></li>
     </ul>
