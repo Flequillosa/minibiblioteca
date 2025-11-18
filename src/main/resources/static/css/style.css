@@ -1,0 +1,51 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f2f2f2;
+}
+
+h1 {
+    color: #333333;
+}
+
+/*Tabla*/
+table {
+    width: 70%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #cccccc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #eeeeee;
+}
+
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/*Enlaces */
+a {
+    text-decoration: none;
+    color: #1a73e8;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/*Estilo para libros prestados */
+.prestado {
+    background-color: #ee9d93; /*cambia el color de fondo */
+    font-weight: bold;          /*cambia el texto en negrita */
+}
