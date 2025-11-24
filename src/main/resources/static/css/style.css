@@ -1,0 +1,54 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #dddddd;
+}
+
+h1 {
+    color: #333333;
+}
+
+/* Tabla */
+table {
+    width: 70%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff; /* Fondo blanco para destacar sobre gris */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 6px; /* Bordes ligeramente redondeados */
+    overflow: hidden;
+}
+
+th, td {
+    border: 1px solid #cccccc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #eeeeee;
+}
+
+/* Enlaces */
+a {
+    text-decoration: none;
+    color: #1a73e8;
+}
+
+a:hover {
+    text-decoration: underline;
+    
+}
+
+/* Estilo para la palabra Sí (prestado) */
+td.prestado {
+    font-weight: bold;
+    color: red;
+}
+
+/* Estilo para la palabra No (disponible) */
+td.disponible {
+    font-weight: bold;
+    color: green;
+}
