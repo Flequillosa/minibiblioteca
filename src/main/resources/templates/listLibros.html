@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Mini Biblioteca</title>
+    <!--Enlace al CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <h1>Mi Mini Biblioteca</h1>
+
+    <!-- Mensajes de confirmación o error -->
+    <div th:if="${txtMensaje != null}" class="alert success" th:text="${txtMensaje}"></div>
+    <div th:if="${txtError != null}" class="alert error" th:text="${txtError}"></div>
+
+    <!-- Formulario de búsqueda y filtro -->
+    <form th:action="@{/}" method="get" style="margin-bottom: 12px;">
+        <!-- Campo de búsqueda -->
+        <input type="text" name="q" placeholder="Buscar por título o autor" th:value="${q}" />
+        <!-- Select para filtrar por estado del libro -->
+        <select name="filtro">
+            <option th:value="all" th:selected="${filtro == 'all'}">Todos</option>
+            <option th:value="prestados" th:selected="${filtro == 'prestados'}">Prestados</option>
+            <option th:value="disponibles" th:selected="${filtro == 'disponibles'}">Disponibles</option>
+        </select>
+        <button type="submit">Filtrar</button>
+        &nbsp;
+        <!-- Enlace para resetear los filtros y mostrar todos los libros -->
+        <a th:href="@{/(filtro='all')}">Quitar filtros</a>
+    </form>
+
+    <!-- Tabla de libros -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Prestado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="libro : ${libros}">
+                <td th:text="${libro.id}"></td>
+                <td th:text="${libro.titulo}"></td>
+                <td th:text="${libro.autor}"></td>
+                <!-- Prestado: aplica la clase usando classappend -->
+                <td th:text="${libro.prestado ? 'Sí' : 'No'}"
+                    th:classappend="${libro.prestado} ? 'prestado' : 'disponible'"></td>
+                <td>
+                    <a th:href="@{/toggle/{id}(id=${libro.id})}">Cambiar estado</a> |
+                    <a th:href="@{/delete/{id}(id=${libro.id})}">Eliminar</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(libros)}">
+                <td colspan="5">No hay libros que coincidan con los filtros.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Formulario simple para añadir libros -->
+    <form th:action="@{/add}" method="get" style="margin-top:20px;">
+        <input type="text" name="titulo" placeholder="Título" required />
+        <input type="text" name="autor" placeholder="Autor" />
+        <button type="submit">Añadir libro</button>
+    </form>
+</body>
+
+</html>

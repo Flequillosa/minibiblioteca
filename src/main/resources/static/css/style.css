@@ -38,7 +38,6 @@ a {
 
 a:hover {
     text-decoration: underline;
-    
 }
 
 /* Estilo para la palabra Sí (prestado) */
@@ -51,4 +50,19 @@ td.prestado {
 td.disponible {
     font-weight: bold;
     color: green;
+}
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.alert.success {
+    background-color: #c3f1cb; /* verde claro */
+    color: #155724; /* verde oscuro */
+}
+
+.alert.error {
+    background-color: #f8d7da; /* rojo claro */
+    color: #721c24; /* rojo oscuro */
 }
