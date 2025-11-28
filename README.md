@@ -42,4 +42,4 @@ muestra un mensaje de confirmación en la interfaz. Se mantienen todas las funci
   - Cómo implementar filtrado y búsqueda en la vista usando Thymeleaf.
   - Uso de mensajes de confirmación dinámicos para mejorar la experiencia del usuario.
   - Refuerzo del patrón MVC y la integración de lógica de negocio con la presentación visual.
-  - 
+  
